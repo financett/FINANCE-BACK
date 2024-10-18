@@ -35,11 +35,12 @@ def create_connection():
     connection = None
     try:
         connection = mysql.connector.connect(
-            host='junction.proxy.rlwy.net',  
-            user='root',  
-            password='seGINyodjSJtCdGANdxoshXTJKuQNOAV',  
-            database='railway',  
-            port='46796'
+            connection = mysql.connector.connect(
+            host=os.environ.get('DB_HOST', 'junction.proxy.rlwy.net'),  
+            user=os.environ.get('DB_USER', 'root'),  
+            password=os.environ.get('DB_PASSWORD', 'seGINyodjSJtCdGANdxoshXTJKuQNOAV'),  
+            database=os.environ.get('DB_NAME', 'railway'),  
+            port=os.environ.get('DB_PORT', '46796')
         )
         return connection
     except Error as e:
