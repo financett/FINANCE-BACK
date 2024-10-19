@@ -8,6 +8,7 @@ from dateutil.relativedelta import relativedelta
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import secrets
+import os
 
 app = Flask(__name__)
 CORS(app)  # Habilitar CORS para todas las rutas y dominios
@@ -35,12 +36,11 @@ def create_connection():
     connection = None
     try:
         connection = mysql.connector.connect(
-            connection = mysql.connector.connect(
-            host=os.environ.get('DB_HOST', 'junction.proxy.rlwy.net'),  
-            user=os.environ.get('DB_USER', 'root'),  
-            password=os.environ.get('DB_PASSWORD', 'seGINyodjSJtCdGANdxoshXTJKuQNOAV'),  
-            database=os.environ.get('DB_NAME', 'railway'),  
-            port=os.environ.get('DB_PORT', '46796')
+            host='junction.proxy.rlwy.net',  
+            user='root',  
+            password='seGINyodjSJtCdGANdxoshXTJKuQNOAV',  
+            database='railway',  
+            port='46796'
         )
         return connection
     except Error as e:
